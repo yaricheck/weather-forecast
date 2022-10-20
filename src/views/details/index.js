@@ -2,8 +2,7 @@ import React from "react";
 
 function Details() {
   return (
-    <div className="App">
-    </div>
+    <h1>Details</h1>
   );
 }
 
