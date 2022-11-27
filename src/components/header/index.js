@@ -1,5 +1,5 @@
 import { HeaderContainer, MenuNavbar, SearchInput, MenuButton, SearchContainer, SearchButton, LogoText, ErrorPopup } from './styled';
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Flex } from '../utilities/styled';
 
 const Header = (props) => {
