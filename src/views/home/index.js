@@ -1,8 +1,10 @@
 import React from "react";
+import { CityName } from './styled';
 
-function Home() {
+function Home(props) {
+  const { cityData } = props;
   return (
-    <h1>Home</h1>
+    <CityName>{cityData.name}</CityName>
   );
 }
 

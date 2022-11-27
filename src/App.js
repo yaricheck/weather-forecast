@@ -1,21 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import styled from "styled-components";
 import Header from "./components/header";
+import Spinner from "./components/utilities/spinner";
+import { loadStartupData } from "./services/loadService";
+import { getCityDataByName } from "./services/searchService";
 import Details from "./views/details";
 import Home from "./views/home";
 
+const Main = styled.main`
+  display: flex;
+  width: 1024px;
+  padding: 128px 0;
+  margin: auto;
+`;
+
 function App() {
+  const [error, setError] = useState(null);
+  const [cityData, setCityData] = useState(null);
+  useEffect(() => {
+    setTimeout(() => {
+      loadStartupData().then((data) => setCityData(data), (e) => setError(e));
+    }, 1000)
+  }, [])
+
   const handleSearch = (searchRequest) => {
-    console.log(searchRequest);
+    getCityDataByName(searchRequest).then((data) => setCityData(data), (e) => setError(e));
   }
 
   return (
     <div className="App">
       <Header onSearch={handleSearch} />
-      <Routes>
-        <Route element={<Home />} path="/" />
-        <Route element={<Details />} path="details" />
-      </Routes>
+      <Main>
+        {cityData ? 
+          <Routes>
+            <Route element={<Home error={error} cityData={cityData}/>} path="/" />
+            <Route element={<Details error={error} cityData={cityData}/>} path="details" />
+          </Routes> :
+          <Spinner />
+        }
+      </Main>
     </div>
   );
 }

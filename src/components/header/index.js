@@ -23,6 +23,10 @@ const Header = (props) => {
     setSearchQuery(e.target.value);
   }
 
+  const handleClick = (pathname) => {
+    window.location.pathname = pathname;
+  }
+
   return (
     <HeaderContainer>
       <MenuNavbar>
@@ -40,9 +44,9 @@ const Header = (props) => {
             { !isCorrect && <ErrorPopup>Search field cannot be empty</ErrorPopup> }
           </SearchContainer>
         </Flex>
-        <MenuButton>Home</MenuButton>
-        <MenuButton>Details</MenuButton>
-        <MenuButton>About</MenuButton>
+        <MenuButton onClick={() => handleClick('')}>Home</MenuButton>
+        <MenuButton onClick={() => handleClick('/details')}>Details</MenuButton>
+        <MenuButton onClick={() => handleClick('/about')}>About</MenuButton>
       </MenuNavbar>
     </HeaderContainer>
   );

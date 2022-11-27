@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import FontStyles from './fontStyles';
+import GlobalStyles from './globalStyles';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-    <FontStyles />
+    <GlobalStyles />
     <App />
   </BrowserRouter>
 );
