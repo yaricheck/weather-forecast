@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import styled from "styled-components";
 import Header from "./components/header";
@@ -11,7 +11,7 @@ import Home from "./views/home";
 const Main = styled.main`
   display: flex;
   width: 1024px;
-  padding: 128px 0;
+  padding: 64px 0;
   margin: auto;
 `;
 
@@ -20,12 +20,12 @@ function App() {
   const [cityData, setCityData] = useState(null);
   useEffect(() => {
     setTimeout(() => {
-      loadStartupData().then((data) => setCityData(data), (e) => setError(e));
+      loadStartupData()?.then((data) => setCityData(data), (e) => setError(e));
     }, 1000)
   }, [])
 
-  const handleSearch = (searchRequest) => {
-    getCityDataByName(searchRequest).then((data) => setCityData(data), (e) => setError(e));
+  const handleSearch = (cityName) => {
+    getCityDataByName(cityName).then((data) => setCityData(data), (e) => setError(e));
   }
 
   return (
@@ -35,7 +35,7 @@ function App() {
         {cityData ? 
           <Routes>
             <Route element={<Home error={error} cityData={cityData}/>} path="/" />
-            <Route element={<Details error={error} cityData={cityData}/>} path="details" />
+            <Route element={<Details/>} path="details" />
           </Routes> :
           <Spinner />
         }

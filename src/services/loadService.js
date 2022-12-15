@@ -1,9 +1,11 @@
+import { getPosition } from "./geolocationService";
 import { getCityDataByName, getCityDataByPosition } from "./searchService";
 
-export const loadStartupData = () => {
-  if (window.location.protocol === 'https:' && window.navigator.geolocation){
-    const position = window.navigator.geolocation.getCurrentPosition();
+export const loadStartupData = async () => {
+  try {
+    const position = await getPosition();
     return getCityDataByPosition(position);
-  }
-  return getCityDataByName('Minsk');
+  } catch (error) {
+    return getCityDataByName('Minsk');
+  } 
 };

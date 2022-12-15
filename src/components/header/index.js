@@ -44,8 +44,8 @@ const Header = (props) => {
             { !isCorrect && <ErrorPopup>Search field cannot be empty</ErrorPopup> }
           </SearchContainer>
         </Flex>
-        <MenuButton onClick={() => handleClick('')}>Home</MenuButton>
-        <MenuButton onClick={() => handleClick('/details')}>Details</MenuButton>
+        <MenuButton onClick={() => handleClick('')}>Weather</MenuButton>
+        <MenuButton onClick={() => handleClick('/details')}>News</MenuButton>
         <MenuButton onClick={() => handleClick('/about')}>About</MenuButton>
       </MenuNavbar>
     </HeaderContainer>

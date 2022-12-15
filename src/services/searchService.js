@@ -14,8 +14,8 @@ const axiosInstance = axios.create({
 export const getCityDataByPosition = async (position) => {
   const response = await axiosInstance({
     params: {
-      lat: position.latitude,
-      lon: position.longitude,
+      lat: position.coords.latitude,
+      lon: position.coords.longitude,
     },
   });
   return response.data;

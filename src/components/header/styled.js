@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.div`
@@ -57,27 +58,34 @@ export const SearchContainer = styled.div`
   border-radius: 30px;
   background: white;
   margin: 0 50px;
+  width: 250px;
+  box-sizing: border-box;
 `;
 
 export const SearchButton = styled(MenuButton)`
   font-size: 15px;
   padding: 5px 8px;
+  margin: 0 0 0 auto;
 `;
 
 const ErrorPopupBorder = styled.div`
   clip-path: polygon(50% 0%, 55% 10%, 100% 10%, 100% 100%, 0 100%, 0 10%, 45% 10%);
-  width: fit-content;
+  width: inherit;
   height: fit-content;
   position: fixed;
   margin: 54px 0px 0px -14px;
   background-color: #f55;
   padding: 1px;
+  box-sizing: border-box;
 `;
 
 const ErrorPopupContent = styled.div`
   background-color: #eee;
   padding: 10px;
+  height: 30px;
+  line-height: 35px;
   clip-path: inherit;
+  text-align: center;
 `;
 
 export const ErrorPopup = (props) => {
