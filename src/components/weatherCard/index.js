@@ -1,10 +1,13 @@
 import React from "react";
 import DateTime from "../dateTime";
+import WeatherBlock from "../weatherBlock";
 import WeatherCardFooter from "../weatherCardFooter";
-import { WeatherCardContainer } from "./styled";
+import WeatherChart from "../weatherChart";
+import { WeatherCardContainer, Flex } from "./styled";
 
 const WeatherCard = (props) => {
-  const { cityData: { sys: { sunrise, sunset }, main: { pressure, humidity }, wind: { speed }} } = props;
+  console.log(props.cityData);
+  const { cityData: { sys: { sunrise, sunset }, main, main: { pressure, humidity }, wind: { speed }, weather, weather: [{ icon }]} } = props;
   const dateTime = new Date().getTime();
   const isNight = sunset * 1000 < dateTime || sunrise * 1000 > dateTime;
   const footerData = {
@@ -24,7 +27,11 @@ const WeatherCard = (props) => {
 
   return (
     <WeatherCardContainer isNight={isNight}>
-      <DateTime dateTime={dateTime} isNight={isNight} />
+      <Flex>
+        <DateTime dateTime={dateTime} isNight={isNight} />
+      </Flex>
+      <WeatherBlock main={main} weather={weather} icon={icon} isNight={isNight}/>
+      <WeatherChart />
       <WeatherCardFooter isNight={isNight} footerData={footerData}/>
     </WeatherCardContainer>
   );

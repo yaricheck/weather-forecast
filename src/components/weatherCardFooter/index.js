@@ -7,7 +7,7 @@ const WeatherCardFooter = (props) => {
     <FooterContainer>
       {Object.entries(footerData).map(([key, data]) => (
         <FooterUnit key={key}>
-          <FooterImage key={key} src={`icons/${key}${isNight && 'Night'}.svg`}/>
+          <FooterImage key={key} src={`icons/${key}${isNight ? 'Night' : ''}.svg`}/>
           <FooterText key={key} isNight={isNight}>{data.value}{data.units}</FooterText>
         </FooterUnit>
       ))}

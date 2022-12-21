@@ -19,7 +19,7 @@ const DateTime = (props) => {
 
   return (
     <DateContainer isNight={isNight}>
-      <CurrentDateBlock>{days[dateObject.getDay()]}, {months[dateObject.getMonth()]} {dateObject.getDay()}</CurrentDateBlock>
+      <CurrentDateBlock>{days[dateObject.getDay()]}, {months[dateObject.getMonth()]} {dateObject.getDate()}</CurrentDateBlock>
       <CurrentTimeBlock>{toTimeFormat(dateObject.getHours())}:{toTimeFormat(dateObject.getMinutes())}:{toTimeFormat(dateObject.getSeconds())} </CurrentTimeBlock>
     </DateContainer>
   );
