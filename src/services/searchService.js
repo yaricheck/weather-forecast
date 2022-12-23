@@ -1,31 +1,52 @@
 import axios from "axios"
 
-const axiosInstance = axios.create({
+const dataInstance = axios.create({
   baseURL: 'https://api.openweathermap.org/data/2.5/weather/',
   timeout: 10000,
   method: 'get',
-  headers: {}, //lat=44.34&lon=10.99&appid={API key}
+  headers: {},
   params: {
     units: 'metric',
     appid: '7cb3615592b8990617f9eb6526e69174',
   },
 });
 
-export const getCityDataByPosition = async (position) => {
-  const response = await axiosInstance({
+export const getCityDataByCoords = async (coords) => {
+  const response = await dataInstance({
     params: {
-      lat: position.coords.latitude,
-      lon: position.coords.longitude,
+      lat: coords.latitude,
+      lon: coords.longitude,
     },
   });
   return response.data;
 } ;
 
 export const getCityDataByName = async (name) => {
-  const response = await axiosInstance({
+  const response = await dataInstance({
     params: {
       q: name,
     },
   });
   return response.data;
 };
+
+const weatherInstance = axios.create({
+  baseURL: 'https://api.openweathermap.org/data/2.5/forecast/',
+  timeout: 10000,
+  method: 'get',
+  headers: {},
+  params: {
+    units: 'metric',
+    appid: '7cb3615592b8990617f9eb6526e69174',
+  },
+});
+
+export const getForecastByCoords = async (coords) => {
+  const response = await weatherInstance({
+    params: {
+      lat: coords.latitude,
+      lon: coords.longitude,
+    },
+  });
+  return response.data;
+} ;

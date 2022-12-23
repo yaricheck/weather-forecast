@@ -1,11 +1,17 @@
-import { getPosition } from "./geolocationService";
-import { getCityDataByName, getCityDataByPosition } from "./searchService";
+import { getCityDataByName, getCityDataByCoords, getForecastByCoords } from "./searchService";
 
-export const loadStartupData = async () => {
+export const loadStartupData = async (coords) => {
   try {
-    const position = await getPosition();
-    return getCityDataByPosition(position);
+    return getCityDataByCoords(coords);
   } catch (error) {
     return getCityDataByName('Minsk');
   } 
 };
+
+export const loadForecastByCoords = async (coords) => {
+  try {
+    return getForecastByCoords(coords);
+  } catch (error) {
+    return getCityDataByName('Minsk');
+  }
+}

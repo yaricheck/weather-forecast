@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { toTimeFormat } from '../../utilities/converters';
 import { DateText, DateContainer, CurrentDateBlock, CurrentTimeBlock } from './styled';
 
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -11,11 +12,6 @@ const DateTime = (props) => {
     const timerId = setInterval(() => setDateObject(new Date()), 1000);
     return () => clearInterval(timerId);
   });
-
-  const toTimeFormat = (num) => {
-    if (num > 9) return num;
-    return '0' + num.toString();
-  }
 
   return (
     <DateContainer isNight={isNight}>

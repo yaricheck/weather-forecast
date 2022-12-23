@@ -5,7 +5,7 @@ export const Flex = styled.div`
 `;
 
 export const SpinnerContainer = styled.div`
-  position: absolute;
+  position: relative;
   top: 50%;
   left: 50%;
   margin: -100px 0 0 -100px;

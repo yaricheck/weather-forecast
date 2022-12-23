@@ -7,7 +7,7 @@ import { WeatherCardContainer, Flex } from "./styled";
 
 const WeatherCard = (props) => {
   console.log(props.cityData);
-  const { cityData: { sys: { sunrise, sunset }, main, main: { pressure, humidity }, wind: { speed }, weather, weather: [{ icon }]} } = props;
+  const { cityData: { sys: { sunrise, sunset }, main, main: { pressure, humidity }, wind: { speed }, weather, weather: [{ icon }], coord } } = props;
   const dateTime = new Date().getTime();
   const isNight = sunset * 1000 < dateTime || sunrise * 1000 > dateTime;
   const footerData = {
@@ -31,7 +31,7 @@ const WeatherCard = (props) => {
         <DateTime dateTime={dateTime} isNight={isNight} />
       </Flex>
       <WeatherBlock main={main} weather={weather} icon={icon} isNight={isNight}/>
-      <WeatherChart />
+      <WeatherChart isNight={isNight} latitude={coord.lat} longitude={coord.lon} />
       <WeatherCardFooter isNight={isNight} footerData={footerData}/>
     </WeatherCardContainer>
   );
