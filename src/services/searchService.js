@@ -49,4 +49,23 @@ export const getForecastByCoords = async (coords) => {
     },
   });
   return response.data;
-} ;
+};
+
+const topNewsInstance = axios.create({
+  baseURL: 'https://newsapi.org/v2/top-headlines',
+  timeout: 10000,
+  method: 'get',
+  headers: {},
+  params: {
+    apiKey: '8316e5240e7a4a049740b395e0659e6e',
+  },
+});
+
+export const getNewsByCountryCode = async (countryCode) => {
+  const response = await topNewsInstance({
+    params: {
+      country: countryCode,
+    },
+  });
+  return response.data;
+};

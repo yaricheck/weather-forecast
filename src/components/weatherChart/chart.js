@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,7 +10,6 @@ import {
   Filler,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import { loadForecastByCoords } from '../../services/loadService';
 import Spinner from '../utilities/spinner';
 import { toTimeFormat } from '../../utilities/converters';
 
@@ -27,7 +26,7 @@ ChartJS.register(
 const WeatherChart = (props) => {
   const { forecast, isNight } = props;
 
-  const chartElements = forecast.list.slice(forecast.cnt - 9);
+  const chartElements = forecast.list;
   const labels = chartElements.map((element) => {
     const date = new Date(element.dt * 1000);
     return `${toTimeFormat(date.getHours())}:${toTimeFormat(date.getMinutes())}`;

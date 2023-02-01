@@ -1,4 +1,4 @@
-import { getCityDataByName, getCityDataByCoords, getForecastByCoords } from "./searchService";
+import { getCityDataByName, getCityDataByCoords, getForecastByCoords, getNewsByCountryCode } from "./searchService";
 
 export const loadStartupData = async (coords) => {
   try {
@@ -13,5 +13,15 @@ export const loadForecastByCoords = async (coords) => {
     return getForecastByCoords(coords);
   } catch (error) {
     return getCityDataByName('Minsk');
+  }
+}
+
+export const loadStartupDataForNews = async (countryCode) => {
+  try {
+    const response = await getNewsByCountryCode(countryCode);
+    if (response.totalResults !== 0) return response;
+    return getNewsByCountryCode('US');
+  } catch (error) {
+    return getNewsByCountryCode();
   }
 }

@@ -6,27 +6,31 @@ import Spinner from "./components/utilities/spinner";
 import { getPosition } from "./services/geolocationService";
 import { loadStartupData } from "./services/loadService";
 import { getCityDataByName } from "./services/searchService";
-import Details from "./views/details";
 import Home from "./views/home";
+import News from "./views/news";
 
 const Main = styled.main`
   display: flex;
   width: 1024px;
   height: calc(100vh - 200px);
-  padding: 64px 0;
+  padding: 64px 50px;
   margin: auto;
+  overflow-y: hidden;
 `;
 
 function App() {
   const [position, setPosition] = useState(null);
   const [error, setError] = useState(null);
   const [cityData, setCityData] = useState(null);
-  useEffect(async () => {
-    const position = await getPosition();
-    setPosition(position);
-    setTimeout(() => {
-      loadStartupData(position.coords)?.then((data) => setCityData(data), (e) => setError(e));
-    }, 1000)
+  useEffect(() => {
+    const getData = async () => {
+      const position = await getPosition();
+      setPosition(position);
+      setTimeout(() => {
+        loadStartupData(position.coords)?.then((data) => setCityData(data)).catch((e) => setError(e));
+      }, 1000);
+    }
+    getData();
   }, [])
 
   const handleSearch = (cityName) => {
@@ -40,7 +44,7 @@ function App() {
         {cityData ? 
           <Routes>
             <Route element={<Home error={error} cityData={cityData}/>} path="/" />
-            <Route element={<Details/>} path="details" />
+            <Route element={<News countryCode={cityData.sys.country} setError={setError}/>} path="details" />
           </Routes> :
           <Spinner />
         }

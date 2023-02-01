@@ -28,10 +28,12 @@ module.exports = {
     path: path.resolve(__dirname, './dist'),
     filename: 'index_bundle.js',
     clean: true,
+    publicPath: '/',
   },
   
   devServer: {
     hot: true,
+    historyApiFallback: true,
   },
   
   module: {

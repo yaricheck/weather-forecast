@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { loadForecastByCoords } from '../../services/loadService';
 import Spinner from '../utilities/spinner';
-import { toTimeFormat } from '../../utilities/converters';
 import WeatherChart from './chart';
 
 const WeatherChartBlock = (props) => {
